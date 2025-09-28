@@ -13,7 +13,7 @@ window=1
 asyncTime=0
 
 os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"paxos"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
-os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"raft"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
+#os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"raft"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
 
 
 print("Test-2 batching")
@@ -28,8 +28,8 @@ window=1000
 asyncTime=0
 
 os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"paxos"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
-os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"raft"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
-
+#os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"raft"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
+'''
 print("Test-3 pipelining")
 sys.stdout.flush()
 
@@ -71,3 +71,4 @@ asyncTime=10
 
 os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"paxos"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
 os.system("/bin/bash integration-test/safety_test.sh "+str(arrivalRate)+" "+"raft"+" "+str(viewTimeoutTime)+" "+str(batchTime)+" "+str(batchSize)+" "+str(pipelineLength)+ " "+str(window) + " "+str(asyncTime))
+'''

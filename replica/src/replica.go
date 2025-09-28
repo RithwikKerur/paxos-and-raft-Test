@@ -28,7 +28,8 @@ type Replica struct {
 	outgoingClientWriters      map[int32]*bufio.Writer // socket writer for each client
 	outgoingClientWriterMutexs map[int32]*sync.Mutex   // for mutual exclusion for each buffio.writer outgoingClientWriters
 
-	replicaAddrList             map[int32]string        // map with the IP:port address of every replica node
+	replicaAddrList             map[int32]string // map with the IP:port address of every replica node
+	replicaAddr                 []int32
 	incomingReplicaReaders      map[int32]*bufio.Reader // socket readers for each replica
 	outgoingReplicaWriters      map[int32]*bufio.Writer // socket writer for each replica
 	outgoingReplicaWriterMutexs map[int32]*sync.Mutex   // for mutual exclusion for each buffio.writer outgoingReplicaWriters
@@ -98,6 +99,7 @@ func New(name int32, cfg *configuration.InstanceConfig, logFilePath string, repl
 		outgoingClientWriterMutexs: make(map[int32]*sync.Mutex),
 
 		replicaAddrList:             make(map[int32]string),
+		replicaAddr:                 []int32{},
 		incomingReplicaReaders:      make(map[int32]*bufio.Reader),
 		outgoingReplicaWriters:      make(map[int32]*bufio.Writer),
 		outgoingReplicaWriterMutexs: make(map[int32]*sync.Mutex),
@@ -144,6 +146,7 @@ func New(name int32, cfg *configuration.InstanceConfig, logFilePath string, repl
 	for i := 0; i < len(cfg.Peers); i++ {
 		int32Name, _ := strconv.ParseInt(cfg.Peers[i].Name, 10, 32)
 		rp.replicaAddrList[int32(int32Name)] = cfg.Peers[i].Address
+		rp.replicaAddr = append(rp.replicaAddr, int32(int32Name))
 		rp.outgoingReplicaWriterMutexs[int32(int32Name)] = &sync.Mutex{}
 	}
 
