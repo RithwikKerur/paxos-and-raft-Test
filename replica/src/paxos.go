@@ -577,13 +577,13 @@ func (rp *Replica) handlePropose(message *proto.PaxosConsensus) {
 	}
 }
 
-func hasRequiredQuorum(view int32, allReplicaIDs []int32, receivedResponses []int32, quorumSize int) bool {
+func hasRequiredQuorum(instanceNumber int32, allReplicaIDs []int32, receivedResponses []int32, quorumSize int) bool {
 	// Optimization: If we haven't even received enough responses,
 	// it's impossible to have the required quorum.
 	if len(receivedResponses) < quorumSize {
 		return false
 	}
-	source := rand.NewSource(int64(view))
+	source := rand.NewSource(int64(instanceNumber))
 	rng := rand.New(source)
 
 	shuffledIDs := make([]int32, len(allReplicaIDs))
